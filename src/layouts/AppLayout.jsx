@@ -1,7 +1,7 @@
 import { Home, ListTodo, LogOut, MessageSquare, Settings } from "lucide-react"
 import { Link, NavLink, Outlet, useLocation } from "react-router"
 
-const App = () => {
+const AppLayout = () => {
 
   const location = useLocation();
 
@@ -57,4 +57,4 @@ const App = () => {
   )
 }
 
-export default App
+export default AppLayout
