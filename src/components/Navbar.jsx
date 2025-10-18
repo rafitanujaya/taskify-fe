@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { NavLink } from "react-router";
 
 
 const Navbar = () => {
@@ -20,10 +21,10 @@ const Navbar = () => {
     }, [])
 
   return (
-    <div className={`fixed w-full z-50 flex justify-between px-6 py-2.5   my-4 left-1/2 -translate-x-1/2 transition-[max-width,background,backdrop-filter] duration-500 rounded-2xl 
+    <div className={`fixed w-full z-50 flex justify-between px-6 py-2.5   my-4 left-1/2 -translate-x-1/2 transition-[max-width,background,backdrop-filter] duration-500 rounded-2xl
         ${
             scrolled
-            ? "max-w-5xl border border-gray-300 bg-white/70 backdrop-blur-xl" 
+            ? "max-w-5xl border border-gray-300 bg-white/70 backdrop-blur-xl shadow-md" 
             : "max-w-7xl"
         }
     `}>
@@ -43,9 +44,9 @@ const Navbar = () => {
         </li>
     </ul>
 
-    <button className=" bg-blue-600 hover:bg-blue-700 cursor-pointer rounded-xl  h-10 px-4 text-white">
+    <NavLink to={'/login'} className=" flex items-center bg-blue-600 hover:bg-blue-700 cursor-pointer rounded-xl h-10 px-4 text-white">
         Get Started
-    </button>
+    </NavLink>
 
     </div>
   )

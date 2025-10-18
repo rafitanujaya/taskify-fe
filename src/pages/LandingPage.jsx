@@ -1,6 +1,7 @@
 import { ArrowRight, CircleCheckBig, Rocket, Star, Zap } from "lucide-react"
 import Navbar from "../components/Navbar"
 import Testimoni from "../components/Testimoni"
+import { NavLink } from "react-router"
 
 const LandingPage = () => {
   return (
@@ -20,9 +21,9 @@ const LandingPage = () => {
             </p>
 
             <div className="mt-6">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl text-lg cursor-pointer">
+                <NavLink to={'/login'} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl text-lg cursor-pointer">
                     Get Started - it's Free
-                </button>
+                </NavLink>
             </div>
         </section> 
 

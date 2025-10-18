@@ -1,16 +1,24 @@
 import { Home, ListTodo, LogOut, MessageSquare, Settings } from "lucide-react"
-import { Link, NavLink, Outlet, useLocation } from "react-router"
+import { Link, Outlet, useLocation, useNavigate } from "react-router"
+import { useUser } from "../hooks/useUser";
 
 const AppLayout = () => {
 
   const location = useLocation();
+  const {user, clearUser} = useUser()
+  const navigate = useNavigate();
 
   const menus = [
     { name: 'Dashboard', icon: <Home className="w-5 h-5" />, link: '/app' },
     { name: 'Tasks', icon: <ListTodo className="w-5 h-5" />, link: '/app/taskboard' },
     { name: 'Chat', icon: <MessageSquare className="w-5 h-5" />, link: '/app/chatbot' },
-    { name: 'Settings', icon: <Settings className="w-5 h-5" />, link: 'app/settings' },
+    { name: 'Setting', icon: <Settings className="w-5 h-5" />, link: '/app/setting' },
   ]
+
+  const handleLogout = () => {
+    clearUser()
+    navigate('/login')
+  } 
 
 
   return (
@@ -42,12 +50,12 @@ const AppLayout = () => {
         <div className="border-t border-gray-200 p-4 space-y-3">
           <div className="flex items-center gap-3">
             <img src="https://i.pravatar.cc/100?img=36" alt="" className="h-10 w-10 rounded-full object-cover border-2 border-blue-500" />
-            <span className="font-medium text-gray-700 ">Maudina Apriliani</span>
+            <span className="font-medium text-gray-700 ">{user?.username}</span>
           </div>
-          <NavLink to={"/login"} className="flex items-center gap-3 text-red-500 hover:bg-red-50 w-full px-3 py-2.5 rounded-lg transition">
+          <button onClick={handleLogout} className="flex items-center gap-3 text-red-500 hover:bg-red-50 w-full px-3 py-2.5 rounded-lg transition">
             <LogOut className="w-5 h-5" />
             <span className="font-medium">Logout</span>
-          </NavLink>
+          </button>
         </div>
 
 

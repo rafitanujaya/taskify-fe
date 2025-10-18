@@ -14,21 +14,30 @@ import AppLayout from './layouts/AppLayout';
 import DashboardPage from './pages/DashboardPage';
 import TaskboardPage from './pages/TaskboardPage';
 import ChatPage from './pages/ChatPage';
+import ProtectedRoute from './middlewares/ProtectedRoute';
+import { UserProvider } from './contexts/UserProvider';
+import CallbackPage from './pages/CallbackPage';
+import SettingPage from './pages/SettingPage';
+
+    // </StrictMode>
+
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<LandingPage/>} />
-        <Route path='login' element={<LoginPage/>}/>
-        <Route path='register' element={<RegisterPage/>}/>
-        <Route path='app' element={<AppLayout/>}>
-          <Route path='' element={<DashboardPage/>}/>
-          <Route path='taskboard' element={<TaskboardPage/>}/>
-          <Route path='chatbot' element={<ChatPage/>}/>
-        </Route>
-      </Routes>
-      
-    </BrowserRouter>
-  </StrictMode>,
+  <UserProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<LandingPage/>} />
+          <Route path='login' element={<LoginPage/>}/>
+          <Route path='register' element={<RegisterPage/>}/>
+          <Route path='auth/callback' element={<CallbackPage/>}/>
+          <Route path='app' element={<ProtectedRoute><AppLayout/></ProtectedRoute>}>
+              <Route path='' element={<DashboardPage/>}/>
+              <Route path='taskboard' element={<TaskboardPage/>}/>
+              <Route path='chatbot' element={<ChatPage/>}/>
+              <Route path='setting' element={<SettingPage/>}/>
+          </Route>
+        </Routes>
+        
+      </BrowserRouter>
+  </UserProvider>,
 )
